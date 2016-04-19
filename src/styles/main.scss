@@ -135,3 +135,15 @@ code {
 .option-list li a:hover code {
   background-color: #31b0d5;
 }
+.option--used {
+
+}
+.option--used a {
+  border: 1px solid #666;
+  
+  background-color: transparent;
+}
+.option--used code {
+  color: #666;
+  background-color: transparent;
+}
