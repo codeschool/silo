@@ -1,19 +1,95 @@
-// Import NPM dependencies like this:
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 
-// Import styles like this:
-import './styles/main.scss';
+const CHALLENGES = [
+  {
+    title: "Here is a question title",
+    optionList: [
+      {
+        id: 0,
+        title: "First",
+        order: 1
+      },
+      {
+        id: 1,
+        title: "Second",
+        order: 2
+      },
+      {
+        id: 2,
+        title: "Third",
+        order: 3
+      },
+      {
+        id: 3,
+        title: "Forth",
+        order: 4
+      }
+    ]
+  }
+];
 
-// Import dependencies like this:
-import Goat from './components/goat-component';
+class Option extends React.Component {
+  render() {
+    return (<li>{this.props.title}</li>);
+  }
+}
 
-class App extends React.Component {
+class OptionList extends React.Component {
   render() {
     return (
-      <div>I heard React was good. <Goat /></div>
+      <div>
+        <ul>
+          {this.props.options.map((props) => {
+            return (<Option {...props}></Option>)
+          })}
+        </ul>
+      </div>
     );
   }
 }
 
-ReactDOM.render(<App />, document.getElementById('app'));
+class Challenge extends React.Component {
+  constructor({ optionList }) {
+    super();
+    const sortedOptions = optionList.sort((a, b) => a.order >= b.order);
+    this.state = { sortedOptions } ;
+  }
+  render () {
+    return (
+      <div className="challenge">
+        <div className="question">
+          <h3>{this.props.title}</h3>
+        </div>
+        <div className="answer">
+          <div>
+            {this.state.sortedOptions.map((o) => <div>BOX {o.order}</div>)}
+          </div>
+        </div>
+        <div className="options">
+          <OptionList options={this.props.optionList} />
+        </div>
+      </div>);
+  }
+}
+
+class Challenges extends React.Component {
+  constructor() {
+    super();
+    this.challenges = CHALLENGES;
+    this.state = {
+      challengeIndex: 0
+    };
+  }
+
+  render() {
+    return (
+      <Challenge {...this.challenges[this.state.challengeIndex]} />
+    );
+  }
+}
+
+render(
+  <Challenges />,
+  document.getElementById('app')
+);
