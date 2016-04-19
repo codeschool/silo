@@ -10,9 +10,20 @@ import Goat from './components/goat-component';
 import Dialogue from './components/dialogue-component';
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      challengeIndex: 0
+    }
+  }
+  
+  continueClickCallback() {
+    this.state.challengeIndex++;
+    alert(this.state.challengeIndex);
+  }
   
   renderDialogue() {
-    return <Dialogue />;
+    return <Dialogue onContinue={this.continueClickCallback.bind(this)}/>;
   }
   
   render() {
