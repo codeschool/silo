@@ -14,7 +14,7 @@
 
     <div class='iphone'>
       <nav class="navbar">
-        <a class="navbar-brand" href="#">Silo</a>
+        <a class="navbar-brand" href="demo-landing.html">Silo</a>
 
         <ul class="nav navbar-nav pull-xs-right">
           <li class="nav-item complete">
@@ -77,7 +77,8 @@
         <div class='success'>
           <h2>Success!</h2>
 
-          <button type='button' class='continue btn btn-lg btn-success'>Continue</button>
+          <a href='#' class='stay btn btn-lg btn-success'>Stay Here</a>
+          <a href='demo-complete.html' class='continue btn btn-lg btn-success' href=>Continue</a>
         </div>
 
         <div class='information'>
@@ -122,7 +123,7 @@
         $('.challenge').addClass('is-complete');
       });
 
-      $('.continue').on('click', function() {
+      $('.stay').on('click', function() {
         $('.challenge').removeClass('is-complete');
       })
     })
