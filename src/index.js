@@ -4,26 +4,62 @@ import Dialogue from './components/dialogue-component';
 
 const CHALLENGES = [
   {
-    title: "Here is a question title",
+    instructions: "Which CSS property would we use to italicize text?",
+    code:
     optionList: [
       {
         id: 0,
-        title: "First",
+        title: "text-decoration",
         order: 1
       },
       {
         id: 1,
-        title: "Second",
+        title: "font-style",
         order: 2
       },
       {
         id: 2,
-        title: "Third",
+        title: "text-transform",
+        order: 3
+      }
+    ],
+    preview: {
+      css: (answer)=> {
+        return ```
+          .italicized {
+            ${answer}: italic;
+          }
+        ```;
+      },
+      html: `
+        <div class="italicized">This text has been italicized.</div>
+      `
+    }
+  },
+  {
+    instructions: `
+      <p>We want to create an element that has a blue box-shadow with a blur-radius of 2px. This shadow is also offset 1 pixel to the left and 4 pixels down.</p>
+      <p>Click the elements to insert them in the correct order we'd use to write these style attributes.</p>
+    `,
+    optionList: [
+      {
+        id: 0,
+        title: "-4px",
+        order: 1
+      },
+      {
+        id: 0,
+        title: "blue",
         order: 3
       },
       {
-        id: 3,
-        title: "Forth",
+        id: 0,
+        title: "1px",
+        order: 2
+      },
+      {
+        id: 0,
+        title: "2px",
         order: 4
       }
     ]
@@ -60,7 +96,7 @@ class Challenge extends React.Component {
     return (
       <div className="challenge">
         <div className="question">
-          <h3>{this.props.title}</h3>
+          <h3>{this.props.instructions}</h3>
         </div>
         <div className="answer">
           <div>
