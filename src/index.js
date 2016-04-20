@@ -31,7 +31,7 @@ const CHALLENGES = [
         ```;
       },
       html: `
-        <div class="italicized">This text has been italicized.</div>
+        <div className="italicized">This text has been italicized.</div>
       `
     }
   },
@@ -132,7 +132,125 @@ class Challenges extends React.Component {
   }
 }
 
+class App extends React.Component {
+    render(){
+      return (<div>
+          <NavBar />
+          <Container />
+        </div>);
+    }
+}
+
+class Container extends React.Component {
+  render(){
+    return (<div>
+
+      <div className='container'>
+        <div className='information'>
+          <p><span className="label label-default">CSS</span></p>
+
+          <p>We want to create an element that has a blue
+            <code>box-shadow</code> with a <code>blur-radius</code> of <code>2px</code>.
+            This shadow is also offset 1 pixel to the left and 4 pixels down.</p>
+
+          <p>Drag and drop the elements into the correct order wed use to write
+            these style attributes.</p>
+        </div>
+
+        <div className='answer'>
+          <p className='lead pull-left'>box-shadow:</p>
+
+          <ul className='list-inline answer-list  pull-left'>
+            <li className='answer-list--filled label label-info'>
+              <a href='#'><code>-4px</code></a>
+            </li>
+            <li className='answer-list--filled label label-info'>
+              <a href='#'><code>1px</code></a>
+            </li>
+            <li className='answer-list--unfilled label label-info'><a href='#'><code>&nbsp;</code></a></li>
+            <li className='answer-list--unfilled label label-info'><a href='#'><code>&nbsp;</code></a></li>
+          </ul>
+          <div className='clearfix'></div>
+        </div>
+
+        <ul className='list-unstyled option-list list-inline'>
+          <li className='option--used list-inline-item'><a href='#' className='label label-info'><code>-4px</code></a></li>
+          <li className='list-inline-item'><a href='#' className='label label-info'><code>-2px</code></a></li>
+          <li className='list-inline-item'><a href='#' className='label label-info'><code>2px</code></a></li>
+          <li className='option--used list-inline-item'><a href='#' className='label label-info'><code>1px</code></a></li>
+        </ul>
+      </div>
+
+    </div>);
+  }
+}
+
+class NavBar extends React.Component {
+  render(){
+    return (<div>
+    <nav className="navbar">
+      <a className="navbar-brand" href="#">Silo</a>
+
+      <ul className="nav navbar-nav pull-xs-right">
+        <li className="nav-item complete">
+          <a href='#' className="nav-link">
+            <i className="fa fa-check-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item complete">
+          <a href='#' className="nav-link">
+            <i className="fa fa-check-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item complete">
+          <a href='#' className="nav-link">
+            <i className="fa fa-check-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item incomplete">
+          <a href='#' className="nav-link">
+            <i className="fa fa-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item active">
+          <a href='#' className="nav-link">
+            <i className="fa fa-dot-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+        <li className="nav-item">
+          <a href='#' className="nav-link">
+            <i className="fa fa-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href='#' className="nav-link">
+            <i className="fa fa-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href='#' className="nav-link">
+            <i className="fa fa-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+
+        <li className="nav-item">
+          <a href='#' className="nav-link">
+            <i className="fa fa-circle-o" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>);
+  }
+}
+
 render(
-  <Challenges />,
+  <App />,
   document.getElementById('app')
 );
