@@ -136,7 +136,6 @@ class Challenges extends React.Component {
   }
   continueClickCallback() {
     this.state.challengeIndex++;
-    alert(this.state.challengeIndex);
   }
 
   render() {
