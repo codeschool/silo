@@ -89,8 +89,8 @@ class Challenges extends React.Component {
 
   render() {
     return (
-      <Challenge {...this.challenges[this.state.challengeIndex]} />
       <div>
+        <Challenge {...this.challenges[this.state.challengeIndex]} />
         <Dialogue onContinue={this.continueClickCallback.bind(this)}/>
       </div>
     );
