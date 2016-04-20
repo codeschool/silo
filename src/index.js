@@ -4,20 +4,41 @@ import { render } from 'react-dom';
 const CHALLENGES = [
   {
     instructions: "Which CSS property would we use to italicize text?",
+    code: (selections)=> {
+      return (<div class='answer'>
+        <p class='lead pull-left'>box-shadow:</p>
+
+        <ul class='list-inline answer-list  pull-left'>
+          <li class='answer-list--filled label label-info'>
+            <Option {...selections[0]}/>
+          </li>
+          <li class='answer-list--filled label label-info'>
+            <Option {...selections[1]}/>
+          </li>
+          <li class='answer-list--unfilled label label-info'>
+            <Option {...selections[2]}/>
+          </li>
+          <li class='answer-list--unfilled label label-info'>
+            <Option {...selections[3]}/>
+          </li>
+        </ul>
+        <div class='clearfix'></div>
+      </div>)
+    },
     optionList: [
       {
         id: 0,
-        title: "text-decoration",
+        label: "text-decoration",
         order: 1
       },
       {
         id: 1,
-        title: "font-style",
+        label: "font-style",
         order: 2
       },
       {
         id: 2,
-        title: "text-transform",
+        label: "text-transform",
         order: 3
       }
     ],
@@ -39,25 +60,46 @@ const CHALLENGES = [
       <p>We want to create an element that has a blue box-shadow with a blur-radius of 2px. This shadow is also offset 1 pixel to the left and 4 pixels down.</p>
       <p>Click the elements to insert them in the correct order we&rsquo;d use to write these style attributes.</p>
     </div>,
+    code: (selections)=> {
+      return (<div class='answer'>
+        <p class='lead pull-left'>box-shadow:</p>
+
+        <ul class='list-inline answer-list  pull-left'>
+          <li class='answer-list--filled label label-info'>
+            <Option label={selections[0]}/>
+          </li>
+          <li class='answer-list--filled label label-info'>
+            <Option label={selections[1]}/>
+          </li>
+          <li class='answer-list--unfilled label label-info'>
+            <Option label={selections[2]}/>
+          </li>
+          <li class='answer-list--unfilled label label-info'>
+            <Option label={selections[3]}/>
+          </li>
+        </ul>
+        <div class='clearfix'></div>
+      </div>)
+    },
     optionList: [
       {
         id: 0,
-        title: "-4px",
+        label: "-4px",
         order: 1
       },
       {
         id: 1,
-        title: "blue",
+        label: "blue",
         order: 3
       },
       {
         id: 2,
-        title: "1px",
+        label: "1px",
         order: 2
       },
       {
         id: 3,
-        title: "2px",
+        label: "2px",
         order: 4
       }
     ]
@@ -73,7 +115,6 @@ class Dialogue extends React.Component {
     this.state = {
     };
   }
-  
 
   render() {
     return(
@@ -87,13 +128,13 @@ class Dialogue extends React.Component {
 
 class Option extends React.Component {
   render() {
-    return (<li>{this.props.title}</li>);
+    return (<a onClick={this.props.onDeselect} href="#">{this.props.label}</a>);
   }
 }
 
 class Answer extends React.Component {
   render() {
-    return (<div>Box {this.props.order}</div>);
+    return (<a href='#' onClick={this.props.onSelect}><code>{this.props.label}</code></a>);
   }
 }
 
@@ -115,7 +156,10 @@ class AnswerList extends React.Component {
   render() {
     return (
       <div>
-        {sortedOptions(this.props.options).map((o) => <Answer key={o.id} {...o} />)}
+        {sortedOptions(this.props.options).map((o) => {
+          o.onDeselect = this.props.onDeselect.bind(this, o);
+          return <Answer key={o.id} {...o} onSelect={this.props.onSelect.bind(this, o)} />
+        })}
       </div>
     );
   }
@@ -125,9 +169,23 @@ class Challenge extends React.Component {
   constructor() {
     super();
     this.state = {
-      complete: false,
+      selections: [],
+      complete: false
     }
   }
+
+  onSelect(option) {
+    this.setState({
+      selections: this.state.selections.concat([option])
+    });
+  }
+
+  onDeselect(option) {
+    this.setState({
+      selections: this.state.selections.filter((o) => o.id != option.id)
+    });
+  }
+
   onPassChallenge(){
     this.setState({complete: true});
   }
@@ -141,11 +199,11 @@ class Challenge extends React.Component {
         <div className="question">
           <h3>{this.props.instructions}</h3>
         </div>
-        <div className="answer">
-          <AnswerList options={this.props.optionList}></AnswerList>
+        <div className="code">
+          {this.props.code(this.state.selections)}
         </div>
         <div className="options">
-          <OptionList options={this.props.optionList} />
+          <AnswerList onSelect={this.onSelect.bind(this)} onDeselect={this.onDeselect.bind(this)} options={this.props.optionList} />
         </div>
         <div className="dialogue">
           <Dialogue onContinue={this.props.onAdvance.bind(this)}/>
