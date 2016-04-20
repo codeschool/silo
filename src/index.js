@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Dialogue from './components/dialogue-component';
 
 const CHALLENGES = [
   {
@@ -47,17 +46,17 @@ const CHALLENGES = [
         order: 1
       },
       {
-        id: 0,
+        id: 1,
         title: "blue",
         order: 3
       },
       {
-        id: 0,
+        id: 2,
         title: "1px",
         order: 2
       },
       {
-        id: 0,
+        id: 3,
         title: "2px",
         order: 4
       }
@@ -68,13 +67,13 @@ const CHALLENGES = [
 const sortedOptions = (list) => list.sort((a, b) => a.order >= b.order);
 
 class Dialogue extends React.Component {
-  
+
   constructor(){
     super();
     this.state = {
     };
   }
-  
+
   render() {
     return(
       <div>
@@ -152,7 +151,7 @@ class Challenges extends React.Component {
     };
   }
 
-  continueClickCallback() {
+  onContinue() {
     let nextChallengeIndex = this.state.challengeIndex + 1;
     if (this.state.challengeIndex >= this.state.challengeLength) {
       nextChallengeIndex = 0;
@@ -164,7 +163,7 @@ class Challenges extends React.Component {
 
   render() {
     return (
-      <Challenge onAdvance={this.continueClickCallback.bind(this)} {...this.challenges[this.state.challengeIndex]} />
+      <Challenge onAdvance={this.onContinue.bind(this)} {...this.challenges[this.state.challengeIndex]} />
     );
   }
 }
