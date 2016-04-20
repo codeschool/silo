@@ -1,6 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Dialogue from './components/dialogue-component';
 
 const CHALLENGES = [
   {
@@ -29,6 +28,24 @@ const CHALLENGES = [
     ]
   }
 ];
+
+class Dialogue extends React.Component {
+  
+  constructor(){
+    super();
+    this.state = {
+    };
+  }
+  
+  render() {
+    return(
+      <div>
+        <div>Success!</div>
+        <button onClick={this.props.onContinue.bind(this)}>Continue</button>
+      </div>
+    );
+  }
+}
 
 class Option extends React.Component {
   render() {
