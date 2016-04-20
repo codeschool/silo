@@ -82,14 +82,15 @@ code {
   margin-bottom: 0;
 }
 .answer-list {
-  margin-left: 14px;
+  margin-left: 10px;
 }
 .answer-list li {
   margin-right: 4px;
+  border: 3px solid #fff;
 }
 
 .answer-list li a {
-  font-size: 22px;
+  font-size: 20px;
 }
 .answer-list--unfilled {
   min-width: 40px;
@@ -173,6 +174,6 @@ code {
 
 
 @keyframes slideUp {
-  from { transform: translateY(200px); }
+  from { transform: translateY(500px); }
   to   { transform: translateY(0px); }
 }
