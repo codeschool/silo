@@ -177,3 +177,20 @@ code {
   from { transform: translateY(500px); }
   to   { transform: translateY(0px); }
 }
+
+.home {
+  margin-top: 1em;
+  height: 100%;
+}
+
+footer {
+  border-top: 1px solid #666;
+  padding: 1em 0;
+  position: absolute;
+  bottom: 64px;
+  width: 92%;
+}
+
+footer a {
+  text-decoration: underline;
+}
