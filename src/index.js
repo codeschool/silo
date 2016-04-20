@@ -56,10 +56,6 @@ class Challenge extends React.Component {
     const sortedOptions = optionList.sort((a, b) => a.order >= b.order);
     this.state = { sortedOptions } ;
   }
-  continueClickCallback() {
-    this.state.challengeIndex++;
-    alert(this.state.challengeIndex);
-  }
   render () {
     return (
       <div className="challenge">
@@ -74,9 +70,6 @@ class Challenge extends React.Component {
         <div className="options">
           <OptionList options={this.props.optionList} />
         </div>
-        <div>
-          <Dialogue onContinue={this.continueClickCallback.bind(this)}/>
-        </div>
       </div>);
   }
 }
@@ -89,10 +82,17 @@ class Challenges extends React.Component {
       challengeIndex: 0
     };
   }
+  continueClickCallback() {
+    this.state.challengeIndex++;
+    alert(this.state.challengeIndex);
+  }
 
   render() {
     return (
       <Challenge {...this.challenges[this.state.challengeIndex]} />
+      <div>
+        <Dialogue onContinue={this.continueClickCallback.bind(this)}/>
+      </div>
     );
   }
 }
