@@ -5,7 +5,6 @@ import Dialogue from './components/dialogue-component';
 const CHALLENGES = [
   {
     instructions: "Which CSS property would we use to italicize text?",
-    code:
     optionList: [
       {
         id: 0,
