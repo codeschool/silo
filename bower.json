@@ -1,0 +1,22 @@
+{
+  "name": "silo",
+  "description": "Mobile Code School challenge app",
+  "main": "src/index.js",
+  "authors": [
+    "Code School"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/OrlandoDevs/react-starter",
+  "moduleType": [],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "src/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "v4.0.0-alpha.2"
+  }
+}
