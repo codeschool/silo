@@ -150,7 +150,6 @@ class Challenge extends React.Component {
         <div className="dialogue">
           <Dialogue onContinue={this.props.onAdvance.bind(this)}/>
         </div>
-        <button onClick={this.onPassChallenge.bind(this)}>succeed</button>
       </div>);
   }
 }
