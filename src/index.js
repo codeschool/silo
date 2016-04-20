@@ -136,7 +136,9 @@ class Challenge extends React.Component {
         <div className="options">
           <OptionList options={this.props.optionList} />
         </div>
-        <button type="button" onClick={this.props.onAdvance}>Advance</button>
+        <div className="dialogue">
+          <Dialogue onContinue={this.props.onAdvance.bind(this)}/>
+        </div>
       </div>);
   }
 }
