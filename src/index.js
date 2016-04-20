@@ -12,15 +12,6 @@ const CHALLENGES = [
           <li class='answer-list--filled label label-info'>
             <Option {...selections[0]}/>
           </li>
-          <li class='answer-list--filled label label-info'>
-            <Option {...selections[1]}/>
-          </li>
-          <li class='answer-list--unfilled label label-info'>
-            <Option {...selections[2]}/>
-          </li>
-          <li class='answer-list--unfilled label label-info'>
-            <Option {...selections[3]}/>
-          </li>
         </ul>
         <div class='clearfix'></div>
       </div>)
@@ -175,6 +166,9 @@ class Challenge extends React.Component {
   }
 
   onSelect(option) {
+    if (this.state.selections.find((o) => o.id === option.id) != null) {
+      return false;
+    }
     this.setState({
       selections: this.state.selections.concat([option])
     });
