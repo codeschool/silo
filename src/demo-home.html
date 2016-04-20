@@ -73,7 +73,13 @@
       </nav>
 
 
-      <div class='container'>
+      <div class='challenge container'>
+        <div class='success'>
+          <h2>Success!</h2>
+
+          <button type='button' class='continue btn btn-lg btn-success'>Continue</button>
+        </div>
+
         <div class='information'>
           <p><span class="label label-default">CSS</span></p>
 
@@ -108,5 +114,19 @@
         </ul>
       </div>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+    $(function() {
+      $('.option-list a').on('click', function() {
+        $('.challenge').addClass('is-complete');
+      });
+
+      $('.continue').on('click', function() {
+        $('.challenge').removeClass('is-complete');
+      })
+    })
+
+    </script>
   </body>
 </html>

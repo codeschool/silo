@@ -13,7 +13,9 @@ body, html {
   width: 480px;
   height: 680px;
   margin: 4em auto 0;
-  border: 1px solid #fff;
+  border: 1px solid #666;
+  border-radius: 4px;
+  overflow: hidden;
 }
 
 
@@ -23,17 +25,6 @@ a:focus,
 a:hover {
   color: #fff;
 }
-
-/* Custom default button */
-.btn-secondary,
-.btn-secondary:hover,
-.btn-secondary:focus {
-  color: #333;
-  text-shadow: none; /* Prevent inheritance from `body` */
-  background-color: #fff;
-  border: .05rem solid #fff;
-}
-
 
 /*
  * Base structure
@@ -91,14 +82,15 @@ code {
   margin-bottom: 0;
 }
 .answer-list {
-  margin-left: 14px;
+  margin-left: 10px;
 }
 .answer-list li {
   margin-right: 4px;
+  border: 3px solid #fff;
 }
 
 .answer-list li a {
-  font-size: 22px;
+  font-size: 20px;
 }
 .answer-list--unfilled {
   min-width: 40px;
@@ -140,10 +132,48 @@ code {
 }
 .option--used a {
   border: 1px solid #666;
-  
+
   background-color: transparent;
 }
 .option--used code {
   color: #666;
   background-color: transparent;
+}
+
+
+.success {
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  height: 100%;
+  width: 92%;
+  background-color: rgba(81, 185, 109, 0.9);
+  z-index: 1;
+  padding: 2em;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  text-align: center;
+  transform: translateY(700px);
+}
+
+.is-complete .success {
+  animation: fadeIn 0.25s forwards,
+    slideUp 0.65s 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+
+@keyframes slideUp {
+  from { transform: translateY(500px); }
+  to   { transform: translateY(0px); }
 }
