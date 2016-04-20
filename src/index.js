@@ -37,7 +37,7 @@ const CHALLENGES = [
   {
     instructions: <div>
       <p>We want to create an element that has a blue box-shadow with a blur-radius of 2px. This shadow is also offset 1 pixel to the left and 4 pixels down.</p>
-      <p>Click the elements to insert them in the correct order we'd use to write these style attributes.</p>
+      <p>Click the elements to insert them in the correct order wed use to write these style attributes.</p>
     </div>,
     optionList: [
       {
@@ -73,6 +73,7 @@ class Dialogue extends React.Component {
     this.state = {
     };
   }
+  
 
   render() {
     return(
@@ -123,10 +124,20 @@ class AnswerList extends React.Component {
 class Challenge extends React.Component {
   constructor() {
     super();
+    this.state = {
+      complete: false,
+    }
+  }
+  onPassChallenge(){
+    this.setState({complete: true});
   }
   render () {
+    var challengeClass = 'challenge';
+    if(this.state.complete)
+      challengeClass += ' is-complete';
+      
     return (
-      <div className="challenge">
+      <div className={challengeClass}>
         <div className="question">
           <h3>{this.props.instructions}</h3>
         </div>
@@ -139,6 +150,7 @@ class Challenge extends React.Component {
         <div className="dialogue">
           <Dialogue onContinue={this.props.onAdvance.bind(this)}/>
         </div>
+        <button onClick={this.onPassChallenge.bind(this)}>succeed</button>
       </div>);
   }
 }
