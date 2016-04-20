@@ -37,7 +37,7 @@ const CHALLENGES = [
   {
     instructions: <div>
       <p>We want to create an element that has a blue box-shadow with a blur-radius of 2px. This shadow is also offset 1 pixel to the left and 4 pixels down.</p>
-      <p>Click the elements to insert them in the correct order we'd use to write these style attributes.</p>
+      <p>Click the elements to insert them in the correct order we&rsquo;d use to write these style attributes.</p>
     </div>,
     optionList: [
       {
