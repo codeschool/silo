@@ -5,6 +5,7 @@
 
 body, html {
   display: block;
+  font-size: 20px;
 }
 
 
@@ -45,7 +46,6 @@ body {
 }
 body {
   color: #fff;
-  text-align: center;
   text-shadow: 0 .05rem .1rem rgba(0,0,0,.5);
 }
 
@@ -65,4 +65,85 @@ body {
 nav {
   border-bottom: 1px solid #666;
   border-radius: 0 !important;
+  margin: 0 1em;
+}
+
+.information {
+  margin-top: 1em;
+}
+
+code {
+  display: inline-block;
+  padding: .25em .4em;
+  font-size: 75%;
+  font-weight: normal;
+  line-height: 1;
+  color: #fff;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: .25rem;
+  background-color: #5bc0de;
+}
+
+
+.answer .lead, .answer ul{
+  margin-bottom: 0;
+}
+.answer-list {
+  margin-left: 14px;
+}
+.answer-list li {
+  margin-right: 4px;
+}
+
+.answer-list li a {
+  font-size: 22px;
+}
+.answer-list--unfilled {
+  min-width: 40px;
+}
+
+
+.answer {
+  background-color: #555;
+  padding: 1em;
+  border-radius: 4px;
+  border: 1px solid transparent;
+}
+
+
+.label-default {
+  border: 1px solid #666;
+  color: #666;
+  background-color: transparent;
+}
+
+.option-list {
+  margin-top: 1em;
+}
+.option-list li {
+  width: 48%;
+  line-height: 90px;
+}
+.option-list li a {
+  padding: 20px;
+  font-size: 32px;
+  width: 100%;
+}
+
+.option-list li a:hover code {
+  background-color: #31b0d5;
+}
+.option--used {
+
+}
+.option--used a {
+  border: 1px solid #666;
+  
+  background-color: transparent;
+}
+.option--used code {
+  color: #666;
+  background-color: transparent;
 }
