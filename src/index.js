@@ -46,17 +46,17 @@ const CHALLENGES = [
         order: 1
       },
       {
-        id: 0,
+        id: 1,
         title: "blue",
         order: 3
       },
       {
-        id: 0,
+        id: 2,
         title: "1px",
         order: 2
       },
       {
-        id: 0,
+        id: 3,
         title: "2px",
         order: 4
       }
@@ -64,14 +64,16 @@ const CHALLENGES = [
   }
 ];
 
+const sortedOptions = (list) => list.sort((a, b) => a.order >= b.order);
+
 class Dialogue extends React.Component {
-  
+
   constructor(){
     super();
     this.state = {
     };
   }
-  
+
   render() {
     return(
       <div>
@@ -88,13 +90,19 @@ class Option extends React.Component {
   }
 }
 
+class Answer extends React.Component {
+  render() {
+    return (<div>Box {this.props.order}</div>);
+  }
+}
+
 class OptionList extends React.Component {
   render() {
     return (
       <div>
         <ul>
           {this.props.options.map((props) => {
-            return (<Option {...props}></Option>)
+            return (<Option key={props.id} {...props}></Option>)
           })}
         </ul>
       </div>
@@ -102,11 +110,19 @@ class OptionList extends React.Component {
   }
 }
 
+class AnswerList extends React.Component {
+  render() {
+    return (
+      <div>
+        {sortedOptions(this.props.options).map((o) => <Answer key={o.id} {...o} />)}
+      </div>
+    );
+  }
+}
+
 class Challenge extends React.Component {
-  constructor({ optionList }) {
+  constructor() {
     super();
-    const sortedOptions = optionList.sort((a, b) => a.order >= b.order);
-    this.state = { sortedOptions } ;
   }
   render () {
     return (
@@ -115,13 +131,12 @@ class Challenge extends React.Component {
           <h3>{this.props.instructions}</h3>
         </div>
         <div className="answer">
-          <div>
-            {this.state.sortedOptions.map((o) => <div>BOX {o.order}</div>)}
-          </div>
+          <AnswerList options={this.props.optionList}></AnswerList>
         </div>
         <div className="options">
           <OptionList options={this.props.optionList} />
         </div>
+        <button type="button" onClick={this.props.onAdvance}>Advance</button>
       </div>);
   }
 }
@@ -131,19 +146,24 @@ class Challenges extends React.Component {
     super();
     this.challenges = CHALLENGES;
     this.state = {
-      challengeIndex: 0
+      challengeIndex: 0,
+      challengeLength: this.challenges.length
     };
   }
-  continueClickCallback() {
-    this.state.challengeIndex++;
+
+  onContinue() {
+    let nextChallengeIndex = this.state.challengeIndex + 1;
+    if (this.state.challengeIndex >= this.state.challengeLength) {
+      nextChallengeIndex = 0;
+    }
+    this.setState({
+      challengeIndex: nextChallengeIndex
+    });
   }
 
   render() {
     return (
-      <div>
-        <Challenge {...this.challenges[this.state.challengeIndex]} />
-        <Dialogue onContinue={this.continueClickCallback.bind(this)}/>
-      </div>
+      <Challenge onAdvance={this.onContinue.bind(this)} {...this.challenges[this.state.challengeIndex]} />
     );
   }
 }
